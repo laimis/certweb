@@ -7,10 +7,10 @@ import (
 )
 
 // adjust this to change expiration date
-var expiration = time.Duration(10 * time.Second)
+var expiration = time.Duration(24 * time.Hour)
 
 // simulated sleep duration
-var sleepDuration = time.Duration(2 * time.Second)
+var sleepDuration = time.Duration(10 * time.Second)
 
 // RequestCert simulates requesting a cert and returning it
 func RequestCert(domain string) (string, time.Time, error) {
