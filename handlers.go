@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"time"
 )
 
 // HealthCheck used to return health check responses
@@ -69,6 +70,13 @@ func certsHandler(w http.ResponseWriter, r *http.Request) {
 	for _, c := range container.certs {
 		certs = append(certs, c)
 	}
+
+	sendAsJSON(w, certs)
+}
+
+func expiredHandler(w http.ResponseWriter, r *http.Request) {
+
+	var certs = container.GetExpired(time.Now())
 
 	sendAsJSON(w, certs)
 }

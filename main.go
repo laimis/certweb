@@ -13,8 +13,10 @@ func main() {
 
 	http.HandleFunc("/cert/", certHandler)
 	http.HandleFunc("/renew/", renewHandler)
-	http.HandleFunc("/health", healthcheck)
 	http.HandleFunc("/certs", certsHandler)
+	http.HandleFunc("/expired", expiredHandler)
+
+	http.HandleFunc("/health", healthcheck)
 
 	log.Fatal(http.ListenAndServe(":8088", nil))
 }

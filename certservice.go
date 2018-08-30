@@ -7,7 +7,7 @@ import (
 )
 
 // adjust this to change expiration date
-var expiration = time.Duration(24 * time.Hour)
+var expiration = time.Duration(10 * time.Second)
 
 // simulated sleep duration
 var sleepDuration = time.Duration(2 * time.Second)
