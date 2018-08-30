@@ -50,3 +50,13 @@ func TestGetExpiredCertsShouldReturnAllExpired(t *testing.T) {
 		t.Errorf("There should be one expired cert, was % d instead", expired)
 	}
 }
+
+func TestRenewNonExistingShouldFail(t *testing.T) {
+	var certs = NewCertContainer(testVersionOfCertIssue)
+
+	_, err := certs.RenewCert("nonexistent")
+
+	if err == nil {
+		t.Errorf("Error should have been returned trying to renew non existing domain")
+	}
+}

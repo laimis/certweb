@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -68,6 +69,11 @@ func (container *CertContainer) GetCert(domain string) (Cert, error) {
 func (container *CertContainer) RenewCert(domain string) (Cert, error) {
 	container.Lock()
 	defer container.Unlock()
+
+	_, ok := container.certs[domain]
+	if !ok {
+		return Cert{}, fmt.Errorf("Cert for %s does not exist", domain)
+	}
 
 	cert, err := getCert(domain, container.refreshFunc)
 	if err != nil {
